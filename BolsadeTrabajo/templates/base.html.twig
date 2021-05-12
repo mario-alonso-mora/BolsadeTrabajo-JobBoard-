@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}WELCOME!!{% endblock %}</title>
+    {% block stylesheets %}
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+              crossorigin="anonymous">
+    {% endblock %}
+</head>
+<body>
+
+<style>
+
+    h1 {
+        font-size: 30px;
+        font-weight: bold;
+        color: orangered;
+    }
+
+    body {
+
+        display: flex;
+        font-size: larger;
+        flex-direction: column;
+        font-family: "Century Schoolbook L";
+        background-color: #e8e7e7;
+        color: #040a79;
+    }
+
+
+</style>
+
+{% block messages %}
+    {% for m in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ m }}
+        </div>
+    {% endfor %}
+{% endblock %}
+{% block menu %}
+    <div class="mb-3">
+        {% if app.user %}
+            {{ 'app.user.loggedin' | trans({ user: app.user.username }) }} - <a
+                href="{{ path('app_logout') }}">{{ 'app.logout'|trans }}</a>
+        {% else %}
+            <a href="{{ url('app_login') }}">{{ 'app.login' }}</a>
+        {% endif %}
+        {% block register %}
+            <a href="{{ ("/register") }}">Register</a>
+
+        {% endblock %}
+
+
+    </div>
+{% endblock %}
+{% block body %}
+
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% extends'base.html.twig' %}
+{% block body %}
+  {%for m in app.flashes('success') %}
+      {{ m }}
+    {% endfor  %}
+You are applying to {{ offer.title }}
+<br>
+{{ form(form) }}
+{% endblock %}
